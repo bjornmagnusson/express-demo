@@ -1,1 +1,1 @@
-https://circleci.com/gh/:owner/:repo.svg?style=shield&circle-token=:circle-token
+[![CircleCI](https://circleci.com/gh/bjornmagnusson/express-demo.svg?style=svg)](https://circleci.com/gh/bjornmagnusson/express-demo)
