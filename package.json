@@ -7,9 +7,13 @@
     "express": "^4.15.3",
     "pkginfo": "^0.4.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.4.2",
+    "supertest": "^3.0.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha '**/*.spec.js'"
   },
   "author": "",
   "license": "ISC"
