@@ -14,7 +14,8 @@
     "supertest": "^3.0.0"
   },
   "scripts": {
-    "test": "mocha '**/*.spec.js'"
+    "test": "mocha '**/*.spec.js'",
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC"

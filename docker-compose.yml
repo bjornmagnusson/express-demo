@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+  api:
+    build:
+      context: .
+    image: bjornmagnusson/express-demo
+    ports:
+      - "8080:3000"
+    labels:
+      kompose.service.type: LoadBalancer
+  zap:
+    image: owasp/zap2docker-weekly
+    command: zap-baseline.py -t http://api:3000
+    depends_on:
+      - api
