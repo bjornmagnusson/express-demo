@@ -18,7 +18,7 @@ steps:
     commands:
     - cf_export PACKAGE=$(helm package ./charts/express-demo | cut -d " " -f 8)
   DeployWithHelm:
-    image: codefresh/plugin-helm:2.7.2 #Standard Codefresh plugin for deploying Helm packages to Kubernetes
+    image: codefresh/plugin-helm:2.8.2 #Standard Codefresh plugin for deploying Helm packages to Kubernetes
     working_directory: ./
     environment:
       - CHART_NAME=./charts/express-demo
