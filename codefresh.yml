@@ -14,10 +14,12 @@ steps:
     tag: 'latest'
     registry: dockerhub
   helm_package:
+    title: Building Helm Package
     image: devth/helm
     commands:
     - cf_export PACKAGE=$(helm package ./charts/express-demo | cut -d " " -f 8)
   DeployWithHelm:
+    title: Deploying Helm Chart
     image: codefresh/plugin-helm:2.7.2 #Standard Codefresh plugin for deploying Helm packages to Kubernetes
     working_directory: ./
     environment:
