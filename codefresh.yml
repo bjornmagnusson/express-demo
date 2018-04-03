@@ -11,7 +11,7 @@ steps:
     title: Pushing to Docker Registry
     type: push
     candidate: '${{BuildingDockerImage}}'
-    tag: '${{CF_BRANCH_TAG_NORMALIZED}}'
+    tag: 'latest'
     registry: dockerhub
   helm_package:
     image: devth/helm
