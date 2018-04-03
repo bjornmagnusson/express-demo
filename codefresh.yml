@@ -13,11 +13,19 @@ steps:
     candidate: '${{BuildingDockerImage}}'
     tag: 'latest'
     registry: dockerhub
+    when:
+      branch:
+        only:
+          - master
   helm_package:
     title: Building Helm Package
     image: devth/helm
     commands:
     - cf_export PACKAGE=$(helm package ./charts/express-demo | cut -d " " -f 8)
+    when:
+      branch:
+        only:
+          - master
   DeployWithHelm:
     title: Deploying Helm Chart
     image: codefresh/plugin-helm:2.7.2 #Standard Codefresh plugin for deploying Helm packages to Kubernetes
@@ -34,3 +42,7 @@ steps:
       - custom_image_pullPolicy=Always
       - custom_service_type=LoadBalancer
       #- custom_commit_sha=${{CF_SHORT_REVISION}}
+    when:
+      branch:
+        only:
+          - master
