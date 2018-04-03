@@ -28,7 +28,7 @@ steps:
           - master
   DeployWithHelm:
     title: Deploying Helm Chart
-    image: codefresh/plugin-helm:2.8.1
+    image: codefresh/plugin-helm
     working_directory: ./
     environment:
       - CHART_NAME=./charts/express-demo
