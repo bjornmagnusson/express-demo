@@ -32,4 +32,5 @@ steps:
       #- custom_replicaCount=1
       - custom_image_tag=latest
       - custom_image_pullPolicy=Always
+      - custom_service_type=LoadBalancer
       #- custom_commit_sha=${{CF_SHORT_REVISION}}
