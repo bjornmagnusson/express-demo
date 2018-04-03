@@ -29,5 +29,5 @@ steps:
       #- custom_imagePullSecret=codefresh-generated-docker-virtual2.ocpapps.ocpaws.jfrog.team-artifactory-docker-virtual-demochat #Secret previously created
       #- custom_replicaCount=1
       - custom_image_tag=latest
-      - custom_pullPolicy=Always
+      - custom_image_pullPolicy=Always
       #- custom_commit_sha=${{CF_SHORT_REVISION}}
