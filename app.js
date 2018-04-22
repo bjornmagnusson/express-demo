@@ -14,6 +14,12 @@ app.get('/info', function (req, res) {
   })
 })
 
+app.get('/health', function (req, res) {
+  res.send({
+    status: "UP"
+  })
+})
+
 app.listen(PORT, function () {
   console.log('Example app (%s, %s) listening on port %s!', module.exports.name, module.exports.version, PORT)
 })
