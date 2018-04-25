@@ -19,6 +19,6 @@ resources:
     cpu: 100m
     memory: 128Mi
 ingress:
-  enabled: true
+  enabled: false
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /

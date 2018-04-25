@@ -4,7 +4,7 @@ const app = express()
 const PORT = process.env.PORT | 3000
 
 app.get('/', function (req, res) {
-  res.send({output: 'Hello World!'})
+  res.send({output: 'Hello World'})
 })
 
 app.get('/info', function (req, res) {
@@ -15,6 +15,7 @@ app.get('/info', function (req, res) {
 })
 
 app.get('/health', function (req, res) {
+  console.log('Health')
   res.send({
     status: "UP"
   })
