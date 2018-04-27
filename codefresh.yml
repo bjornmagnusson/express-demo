@@ -1,5 +1,10 @@
 version: '1.0'
 steps:
+  unit-tests:
+    image: node:8-alpine
+    commands:
+      - npm install
+      - npm test
   BuildingDockerImage:
     title: Building Docker Image
     type: build
