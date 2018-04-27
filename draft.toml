@@ -3,6 +3,6 @@
     name = "express-demo"
     namespace = "default"
     wait = false
-    watch = false
+    watch = true
     watch-delay = 2
-    auto-connect = false
+    auto-connect = true
