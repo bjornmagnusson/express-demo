@@ -20,13 +20,23 @@ describe('GET /', function() {
 
 describe('GET /info', function() {
   it('should return name and version', function(done) {
-    process.env.NAME = 'appname'
-    process.env.VERSION = 'appversion'
     chai.request(app).get('/info')
     .end((err, res) => {
       expect(res).to.have.status(200);
       expect(res.body).to.have.property('version')
       expect(res.body).to.have.property('name')
+      done()
+    })
+  })
+})
+
+describe('GET /health', function() {
+  it('should return status', function(done) {
+    chai.request(app).get('/health')
+    .end((err, res) => {
+      expect(res).to.have.status(200);
+      expect(res.body).to.have.property('status')
+      expect(res.body.status).to.equal('UP')
       done()
     })
   })
