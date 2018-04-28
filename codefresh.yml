@@ -5,31 +5,21 @@ steps:
     commands:
       - npm install
       - npm test
-  freestyle-step-1:
-    title: Building Docker Image
-    image: docker:stable-dind
+  ExposeEnvVariables:
+    description: Expose custom variables
+    image: alpine:3.7
     commands:
-      - apk add --no-cache curl git ca-certificates wget      
-      - wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://raw.githubusercontent.com/sgerrand/alpine-pkg-glibc/master/sgerrand.rsa.pub
-      - GLIBC_VERSION='2.27-r0'
-      - wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}.apk && apk add glibc-${GLIBC_VERSION}.apk
-      - wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-bin-${GLIBC_VERSION}.apk && apk add glibc-bin-${GLIBC_VERSION}.apk
-      - curl -L https://github.com/docker/compose/releases/download/1.20.1/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
-      - chmod +x ~/docker-compose
-      - mv ~/docker-compose /usr/local/bin/docker-compose
-      - REVISION=$(git rev-parse HEAD) CREATION_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ") docker-compose build
-  #BuildingDockerImage:
-  #  title: Building Docker Image
-  #  type: build
-  #  image_name: bjornmagnusson/express-demo
-  #  working_directory: ./
-  #  dockerfile: Dockerfile
-  #  tag: '${{CF_BRANCH_TAG_NORMALIZED}}'
-  #  build_arguments:
-  #    - org.opencontainers.image.created=${CREATION_DATE}
-  #    - org.opencontainers.image.ref.name=express-demo 
-  #    - org.opencontainers.image.revision=${{CF_REVISION}}
-  #   - org.opencontainers.image.source=https://github.com/bjornmagnusson/express-demo
+      - cf_export CREATION_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+  BuildingDockerImage:
+    title: Building Docker Image
+    type: build
+    image_name: bjornmagnusson/express-demo
+    working_directory: ./
+    dockerfile: Dockerfile
+    tag: '${{CF_BRANCH_TAG_NORMALIZED}}'
+    build_arguments:
+      - CREATION_DATE=${{CREATION_DATE}}
+      - REVISION=${{CF_REVISION}}
   PushingToDockerRegistry:
     title: Pushing to Docker Registry
     type: push
