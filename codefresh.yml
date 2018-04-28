@@ -1,17 +1,30 @@
 version: '1.0'
 steps:
-  unit-tests:
+  UnitTests:
     image: node:8-alpine
     commands:
       - npm install
       - npm test
-  BuildingDockerImage:
+  freestyle-step-1:
     title: Building Docker Image
-    type: build
-    image_name: bjornmagnusson/express-demo
-    working_directory: ./
-    dockerfile: Dockerfile
-    tag: '${{CF_BRANCH_TAG_NORMALIZED}}'
+    image: docker:dind-stable
+    commands:
+      - curl -L https://github.com/docker/compose/releases/download/1.20.1/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+      - chmod +x ~/docker-compose
+      - mv ~/docker-compose /usr/local/bin/docker-compose
+      - REVISION=$(git rev-parse HEAD) CREATION_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ") docker-compose build
+  #BuildingDockerImage:
+  #  title: Building Docker Image
+  #  type: build
+  #  image_name: bjornmagnusson/express-demo
+  #  working_directory: ./
+  #  dockerfile: Dockerfile
+  #  tag: '${{CF_BRANCH_TAG_NORMALIZED}}'
+  #  build_arguments:
+  #    - org.opencontainers.image.created=${CREATION_DATE}
+  #    - org.opencontainers.image.ref.name=express-demo 
+  #    - org.opencontainers.image.revision=${{CF_REVISION}}
+  #   - org.opencontainers.image.source=https://github.com/bjornmagnusson/express-demo
   PushingToDockerRegistry:
     title: Pushing to Docker Registry
     type: push
