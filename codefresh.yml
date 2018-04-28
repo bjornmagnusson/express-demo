@@ -53,7 +53,7 @@ steps:
       - custom_image_pullPolicy=Always
       - custom_service_type=LoadBalancer
       - custom_ingress_enabled=false
-      - custom_replicaCount=1
+      - custom_replicaCount=3
     when:
       branch:
         only:
