@@ -9,7 +9,11 @@ steps:
     title: Building Docker Image
     image: docker:stable-dind
     commands:
-      - apk add --no-cache curl git
+      - apk add --no-cache curl git ca-certificates wget      
+      - wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://raw.githubusercontent.com/sgerrand/alpine-pkg-glibc/master/sgerrand.rsa.pub
+      - GLIBC_VERSION='2.27-r0'
+      - wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}.apk && apk add glibc-${GLIBC_VERSION}.apk
+      - wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-bin-${GLIBC_VERSION}.apk && apk add glibc-bin-${GLIBC_VERSION}.apk
       - curl -L https://github.com/docker/compose/releases/download/1.20.1/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
       - chmod +x ~/docker-compose
       - mv ~/docker-compose /usr/local/bin/docker-compose
