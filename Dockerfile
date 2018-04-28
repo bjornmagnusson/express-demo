@@ -1,4 +1,6 @@
 FROM node:8-alpine
+ARG CREATION_DATE
+ARG REVISION
 LABEL org.opencontainers.image.ref.name=express-demo 
 LABEL org.opencontainers.image.source=https://github.com/bjornmagnusson/express-demo
 
