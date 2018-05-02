@@ -6,3 +6,4 @@
     watch = true
     watch-delay = 2
     auto-connect = true
+    set = ["service.type=LoadBalancer"]
