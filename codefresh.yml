@@ -24,7 +24,7 @@ steps:
     title: Pushing to Docker Registry
     type: push
     candidate: '${{BuildingDockerImage}}'
-    tag: 'latest'
+    tag: ${{CF_REVISION}}
     registry: dockerhub
     when:
       branch:
@@ -49,8 +49,7 @@ steps:
       - KUBE_CONTEXT=micro@codefresh
       - NAMESPACE=default
       - custom_image_repository=bjornmagnusson/express-demo
-      - custom_image_tag=latest
-      - custom_image_pullPolicy=Always
+      - custom_image_tag=${{CF_REVISION}}
       - custom_service_type=LoadBalancer
       - custom_ingress_enabled=false
       - custom_replicaCount=3
