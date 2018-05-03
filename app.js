@@ -6,7 +6,7 @@ const PORT = process.env.PORT | 3000
 const hostname = os.hostname()
 
 app.get('/', function (req, res) {
-  res.send({output: 'Hello World!'})
+  res.send({output: 'Hello World'})
 })
 
 app.get('/info', function (req, res) {
@@ -24,7 +24,7 @@ app.get('/health', function (req, res) {
 })
 
 app.listen(PORT, function () {
-  console.log('Example app (%s, %s) listening on port %s!', module.exports.name, module.exports.version, PORT)
+  console.log('Example app (%s:%s, %s)!', module.exports.name, PORT, module.exports.version)
 })
 
 if (process.argv.includes('**/*.spec.js')) {

@@ -1,3 +1,4 @@
+
 {
     // Use IntelliSense to learn about possible attributes.
     // Hover to view descriptions of existing attributes.
@@ -5,10 +6,17 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "node",
+            "type": "draft",
             "request": "launch",
-            "name": "Launch Program",
-            "program": "${workspaceFolder}/app.js"
+            "name": "Draft Debug",
+            "original-debug": {
+                "type": "node",
+                "request": "attach",
+                "name": "Attach to remote",
+                "address": "localhost",
+                "port": 9229,
+                "remoteRoot": "/usr/src/app/"
+            }
         }
     ]
 }

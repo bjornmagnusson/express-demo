@@ -3,7 +3,7 @@
     name = "express-demo"
     namespace = "default"
     wait = false
-    watch = true
+    watch = false
     watch-delay = 2
-    auto-connect = true
-    set = ["service.type=LoadBalancer"]
+    auto-connect = false
+    override-ports = ["8080:3000","9229:9229"]

@@ -29,6 +29,7 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
         - containerPort: {{ .Values.service.internalPort }}
+        - containerPort: 9229
         livenessProbe:
           httpGet:
             path: /health

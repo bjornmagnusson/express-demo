@@ -15,7 +15,7 @@
   },
   "scripts": {
     "test": "mocha --exit '**/*.spec.js'",
-    "start": "node app.js"
+    "start": "node --inspect app.js"
   },
   "author": "",
   "license": "ISC"
