@@ -12,7 +12,7 @@ describe('GET /', function() {
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res.body).to.have.property('output')
-        expect(res.body.output).to.equal("Hello World!");
+        expect(res.body.output).to.equal("Hello World");
         done()
       })
   });
