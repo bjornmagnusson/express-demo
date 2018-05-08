@@ -7,7 +7,9 @@ metadata:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
+    {{if .Values.draft}}
     draft: {{ default "draft-app" .Values.draft }}
+    {{end}}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
@@ -17,11 +19,15 @@ spec:
   template:
     metadata:
       annotations:
+        {{if .Values.draft}}
         buildID: {{ .Values.buildID }}
+        {{end}}
       labels:
         app: {{ template "name" . }}
         release: {{ .Release.Name }}
+        {{if .Values.draft}}
         draft: {{ default "draft-app" .Values.draft }}
+        {{end}}
     spec:
       containers:
       - name: {{ .Chart.Name }}
@@ -29,7 +35,9 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
         - containerPort: {{ .Values.service.internalPort }}
+        {{if .Values.draft}}
         - containerPort: 9229
+        {{end}}
         livenessProbe:
           httpGet:
             path: /health

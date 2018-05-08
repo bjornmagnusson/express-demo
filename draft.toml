@@ -5,5 +5,5 @@
     wait = false
     watch = false
     watch-delay = 2
-    auto-connect = false
+    auto-connect = true
     override-ports = ["8080:3000","9229:9229"]
