@@ -31,7 +31,7 @@ steps:
         only:
           - master
   helm_package:
-    title: Building Helm Package
+    title: Building Helm Chart
     image: devth/helm
     commands:
     - cf_export PACKAGE=$(helm package ./charts/express-demo | cut -d " " -f 8)
@@ -39,6 +39,12 @@ steps:
       branch:
         only:
           - master
+  helm_push:
+    title: Push Helm Chart
+    image: codefresh/cfstep-helm:2.9.0
+    environment:
+      - ACTION=push
+      - CHART_REF=${{PACKAGE}}
   DeployWithHelm:
     title: Deploying Helm Chart
     image: codefresh/plugin-helm
