@@ -44,7 +44,7 @@ steps:
     image: codefresh/cfstep-helm:2.9.0
     environment:
       - ACTION=push
-      - CHART_REF=${{PACKAGE}}
+      - CHART_REF=./charts/express-demo
   DeployWithHelm:
     title: Deploying Helm Chart
     image: codefresh/plugin-helm
