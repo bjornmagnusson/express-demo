@@ -32,7 +32,7 @@ steps:
           - master
   helm_package:
     title: Building Helm Chart
-    image: devth/helm
+    image: dcodefresh/cfstep-helm:2.9.1
     commands:
     - cf_export PACKAGE=$(helm package ./charts/express-demo | cut -d " " -f 8)
     when:
@@ -47,7 +47,7 @@ steps:
       - CHART_REF=./charts/express-demo
   DeployWithHelm:
     title: Deploying Helm Chart
-    image: codefresh/plugin-helm
+    image: codefresh/cfstep-helm:2.9.1
     working_directory: ./
     environment:
       - CHART_NAME=./charts/express-demo
