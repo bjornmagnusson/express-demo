@@ -41,7 +41,7 @@ steps:
           - master
   helm_push:
     title: Push Helm Chart
-    image: codefresh/cfstep-helm:2.9.0
+    image: codefresh/cfstep-helm:2.9.1
     environment:
       - ACTION=push
       - CHART_REF=./charts/express-demo
