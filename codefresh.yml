@@ -56,7 +56,7 @@ steps:
       - NAMESPACE=default
       - custom_image_repository=bjornmagnusson/express-demo
       - custom_image_tag=${{CF_REVISION}}
-      - custom_service_type=LoadBalancer
+      #- custom_service_type=LoadBalancer
       - custom_ingress_enabled=false
       - custom_replicaCount=3
     when:
