@@ -1,21 +1,32 @@
-var pkginfo = require('pkginfo')(module, 'version', 'name');
+const os = require('os')
+var pkginfo = require('pkginfo')(module);
 const express = require('express')
 const app = express()
 const PORT = process.env.PORT | 3000
+const hostname = os.hostname()
 
 app.get('/', function (req, res) {
-  res.send({output: 'Hello World!'})
+  res.send({output: 'Hello World'})
 })
 
 app.get('/info', function (req, res) {
   res.send({
-    name: process.env.NAME | module.exports.name,
-    version: process.env.VERSION | module.exports.version
+    name:  module.exports.name || '',
+    version: module.exports.version || '',
+    hostname: hostname
+  })
+})
+
+app.get('/health', function (req, res) {
+  res.send({
+    status: "UP"
   })
 })
 
 app.listen(PORT, function () {
-  console.log('Example app (%s, %s) listening on port %s!', module.exports.name, module.exports.version, PORT)
+  console.log('Example app (%s:%s, %s)!', module.exports.name, PORT, module.exports.version)
 })
 
-module.exports = app
+if (process.argv.includes('**/*.spec.js')) {
+  module.exports = app
+}

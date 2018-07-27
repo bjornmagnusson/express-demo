@@ -12,21 +12,32 @@ describe('GET /', function() {
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res.body).to.have.property('output')
-        expect(res.body.output).to.equal("Hello World!");
+        expect(res.body.output).to.equal("Hello World");
         done()
       })
   });
 });
 
 describe('GET /info', function() {
-  it('should return name and version', function(done) {
-    process.env.NAME = 'appname'
-    process.env.VERSION = 'appversion'
+  it('should return name, version and hostname', function(done) {
     chai.request(app).get('/info')
     .end((err, res) => {
       expect(res).to.have.status(200);
       expect(res.body).to.have.property('version')
       expect(res.body).to.have.property('name')
+      expect(res.body).to.have.property('hostname')
+      done()
+    })
+  })
+})
+
+describe('GET /health', function() {
+  it('should return status', function(done) {
+    chai.request(app).get('/health')
+    .end((err, res) => {
+      expect(res).to.have.status(200);
+      expect(res.body).to.have.property('status')
+      expect(res.body.status).to.equal('UP')
       done()
     })
   })

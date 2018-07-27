@@ -1,0 +1,9 @@
+[environments]
+  [environments.development]
+    name = "express-demo"
+    namespace = "default"
+    wait = false
+    watch = false
+    watch-delay = 2
+    auto-connect = true
+    override-ports = ["8080:3000","9229:9229"]

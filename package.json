@@ -1,21 +1,21 @@
 {
   "name": "express-demo",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "expressJS demo",
   "main": "app.js",
   "dependencies": {
     "express": "^4.15.3",
-    "pkginfo": "^0.4.0"
+    "pkginfo": "0.4.1"
   },
   "devDependencies": {
     "chai": "^4.1.1",
     "chai-http": "^4.0.0",
-    "mocha": "^4.0.0",
+    "mocha": "5.2.0",
     "supertest": "^3.0.0"
   },
   "scripts": {
-    "test": "mocha '**/*.spec.js'",
-    "start": "node app.js"
+    "test": "mocha --exit '**/*.spec.js'",
+    "start": "node --inspect app.js"
   },
   "author": "",
   "license": "ISC"
