@@ -32,25 +32,28 @@ steps:
           - master
   helm_package:
     title: Building Helm Chart
-    image: codefresh/cfstep-helm:2.9.1
+    image: codefresh/cfstep-helm:2.11.0
     commands:
     - cf_export PACKAGE=$(helm package --app-version ${{CF_REVISION}} ./charts/express-demo | cut -d " " -f 8)
     when:
       branch:
         only:
           - master
+  get_repo_url:
+    image: codefresh/cli:latest
+    commands:
+      - cf_export HELM_URL=$(codefresh get ctx express-demo -o=yaml | grep repositoryUrl | cut -d "'" -f 2)
   helm_push:
-    title: Push Helm Chart
-    image: codefresh/cfstep-helm:2.9.1
-    environment:
-      - ACTION=push
-      - CHART_REF=./charts/express-demo
+    image: appropriate/curl
+    commands:
+        - curl --data-binary "@$PACKAGE" $HELM_URL/api/charts
   DeployWithHelm:
     title: Deploying Helm Chart
-    image: codefresh/cfstep-helm:2.9.1
+    image: codefresh/cfstep-helm:2.11.0
     working_directory: ./
     environment:
-      - CHART_NAME=./charts/express-demo
+      - CHART_REF=./charts/express-demo
+      - ${{CF_REVISION}}
       - RELEASE_NAME=express-demo
       - KUBE_CONTEXT=mini@codefresh
       - NAMESPACE=default
