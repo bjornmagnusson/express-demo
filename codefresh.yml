@@ -34,7 +34,7 @@ steps:
     title: Building Helm Chart
     image: codefresh/cfstep-helm:2.9.1
     commands:
-    - cf_export PACKAGE=$(helm package ./charts/express-demo | cut -d " " -f 8)
+    - cf_export PACKAGE=$(helm package --app-version ${{CF_REVISION}} ./charts/express-demo | cut -d " " -f 8)
     when:
       branch:
         only:
