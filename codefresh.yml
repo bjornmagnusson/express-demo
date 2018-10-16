@@ -62,8 +62,7 @@ steps:
     image: codefresh/cfstep-helm:2.11.0
     working_directory: ./
     environment:
-      - CHART_REF=./charts/express-demo
-      - ${{CF_REVISION}}
+      - CHART_REF=cf-helm-default/express-demo
       - RELEASE_NAME=express-demo
       - KUBE_CONTEXT=mini@codefresh
       - NAMESPACE=default
