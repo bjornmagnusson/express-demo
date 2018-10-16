@@ -42,7 +42,7 @@ steps:
   get_repo_url:
     image: codefresh/cli:latest
     commands:
-      - cf_export HELM_URL=$(codefresh get ctx ${{CF_HELM_DEFAULT}} -o=yaml | grep repositoryUrl | cut -d "'" -f 2)
+      - cf_export HELM_URL=$(codefresh get ctx CF_HELM_DEFAULT -o=yaml | grep repositoryUrl | cut -d "'" -f 2)
   helm_push:
     image: appropriate/curl
     commands:
