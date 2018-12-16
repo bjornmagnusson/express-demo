@@ -1,7 +1,8 @@
-FROM node:8-alpine
+# syntax = docker/dockerfile:1.0.0
+FROM node:10
 ARG CREATION_DATE
 ARG REVISION
-LABEL org.opencontainers.image.ref.name=express-demo 
+LABEL org.opencontainers.image.ref.name=express-demo
 LABEL org.opencontainers.image.source=https://github.com/bjornmagnusson/express-demo
 
 # Create app directory
