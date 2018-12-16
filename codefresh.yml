@@ -43,6 +43,10 @@ steps:
     image: codefresh/cli:latest
     commands:
       - cf_export HELM_URL=$(codefresh get ctx CF_HELM_DEFAULT -o=yaml | grep repositoryUrl | cut -d "'" -f 2)
+    when:
+      branch:
+        only:
+          - master
   helm_push:
     image: codefresh/cfstep-helm:2.11.0
     commands:
@@ -53,6 +57,10 @@ steps:
     #- helm dependency build ./charts/express-demo
     #- PACKAGE="$(helm package ./charts/express-demo --destination /tmp | cut -d " " -f 8)"
     - helm push $PACKAGE remote
+    when:
+      branch:
+        only:
+          - master
   # helm_push:
   #   image: appropriate/curl
   #   commands:
