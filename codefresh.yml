@@ -1,20 +1,5 @@
 version: '1.0'
 steps:
-  UnitTests:
-    image: node:8-alpine
-    commands:
-      - npm install
-      - npm test
-  PushingToDockerRegistry:
-    title: Pushing to Docker Registry
-    type: push
-    candidate: '${{BuildingDockerImage}}'
-    tag: ${{CF_REVISION}}
-    registry: dockerhub
-    when:
-      branch:
-        only:
-          - master
   helm_package:
     title: Building Helm Chart
     image: codefresh/cfstep-helm:2.11.0
