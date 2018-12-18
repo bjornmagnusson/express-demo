@@ -1,13 +1,16 @@
 workflow "docker image" {
   on = "push"
   resolves = [
-    "Push Docker image"
+    "Push Docker image",
   ]
 }
 
 action "Build Docker image" {
   uses = "actions/docker/cli@76ff57a"
   args = "build -t bjornmagnusson/express-demo:$GITHUB_SHA ."
+  env = {
+    DOCKER_BUILDKIT = "1"
+  }
 }
 
 action "Login to Docker Registry" {
