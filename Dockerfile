@@ -17,6 +17,7 @@ RUN npm install
 
 # Bundle app source
 COPY . .
+RUN npm test
 
 LABEL org.opencontainers.image.created=$CREATION_DATE
 LABEL org.opencontainers.image.revision=$REVISION
