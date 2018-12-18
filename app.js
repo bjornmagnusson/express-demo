@@ -24,7 +24,7 @@ app.get('/health', function (req, res) {
 })
 
 app.listen(PORT, function () {
-  console.log('Example app (%s:%s, %s)!', module.exports.name, PORT, module.exports.version)
+  console.log('Express demo app (%s:%s, %s)!', module.exports.name, PORT, module.exports.version)
 })
 
 if (process.argv.includes('**/*.spec.js')) {
