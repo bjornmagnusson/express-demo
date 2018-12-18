@@ -5,5 +5,5 @@ workflow "docker image" {
 
 action "Docker Tag" {
   uses = "actions/docker/cli@76ff57a"
-  runs = "docker build -t bjornmagnusson/express-demo"
+  runs = "docker build -t bjornmagnusson/express-demo ."
 }
