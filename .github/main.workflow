@@ -5,7 +5,7 @@ workflow "docker image" {
 
 action "Build Docker image" {
   uses = "actions/docker/cli@76ff57a"
-  runs = "docker build -t bjornmagnusson/express-demo ."
+  runs = "docker build -t bjornmagnusson/express-demo:$GITHUB_SHA ."
 }
 
 action "Docker Registry" {
