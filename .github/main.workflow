@@ -1,9 +1,9 @@
 workflow "docker image" {
   on = "push"
-  resolves = ["Docker Tag"]
+  resolves = ["Build Docker image"]
 }
 
-action "Docker Tag" {
+action "Build Docker image" {
   uses = "actions/docker/cli@76ff57a"
   runs = "docker build -t bjornmagnusson/express-demo ."
 }
