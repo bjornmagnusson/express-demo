@@ -4,6 +4,6 @@ workflow "docker image" {
 }
 
 action "Build Docker image" {
-  uses = "docker://docker/compose:1.23.2"
-  runs = "docker-compose build"
+  uses = "actions/docker/cli@76ff57a"
+  runs = "docker build -t bjornmagnusson/express-demo ."
 }
