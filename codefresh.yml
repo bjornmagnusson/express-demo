@@ -1,35 +1,5 @@
 version: '1.0'
 steps:
-  UnitTests:
-    image: node:8-alpine
-    commands:
-      - npm install
-      - npm test
-  ExposeEnvVariables:
-    description: Expose custom variables
-    image: alpine:3.7
-    commands:
-      - cf_export CREATION_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-  BuildingDockerImage:
-    title: Building Docker Image
-    type: build
-    image_name: bjornmagnusson/express-demo
-    working_directory: ./
-    dockerfile: Dockerfile
-    tag: '${{CF_BRANCH_TAG_NORMALIZED}}'
-    build_arguments:
-      - CREATION_DATE=${{CREATION_DATE}}
-      - REVISION=${{CF_REVISION}}
-  PushingToDockerRegistry:
-    title: Pushing to Docker Registry
-    type: push
-    candidate: '${{BuildingDockerImage}}'
-    tag: ${{CF_REVISION}}
-    registry: dockerhub
-    when:
-      branch:
-        only:
-          - master
   helm_package:
     title: Building Helm Chart
     image: codefresh/cfstep-helm:2.11.0
