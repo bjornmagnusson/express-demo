@@ -47,7 +47,7 @@ action "ARM annotate manifest" {
 
 action "Push Docker manifest" {
   uses = "actions/docker/cli@master"
-  needs = "ARM annotate manifest"
+  needs = "Create Docker manifest"
   env = {
     DOCKER_CLI_EXPERIMENTAL = "enabled"
   }
