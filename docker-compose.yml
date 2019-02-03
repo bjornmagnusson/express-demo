@@ -6,7 +6,7 @@ services:
       context: .
       labels:
         org.opencontainers.image.created : ${CREATION_DATE}
-        org.opencontainers.image.ref.name: express-demo 
+        org.opencontainers.image.ref.name: express-demo
         org.opencontainers.image.revision: ${REVISION}
         org.opencontainers.image.source: "https://github.com/bjornmagnusson/express-demo"
     image: bjornmagnusson/express-demo
