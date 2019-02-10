@@ -45,9 +45,18 @@ action "ARM annotate manifest" {
   args = "manifest annotate bjornmagnusson/express-demo:$GITHUB_SHA bjornmagnusson/express-demo:arm-$GITHUB_SHA --os linux --arch arm"
 }
 
+action "Manifest" {
+  uses = "actions/docker/cli@master"
+  needs = "ARM annotate manifest"
+  env = {
+    DOCKER_CLI_EXPERIMENTAL = "enabled"
+  }
+  args = "manifest inspect bjornmagnusson/express-demo:$GITHUB_SHA"
+}
+
 action "Push Docker manifest" {
   uses = "actions/docker/cli@master"
-  needs = "Create Docker manifest"
+  needs = "Manifest"
   env = {
     DOCKER_CLI_EXPERIMENTAL = "enabled"
   }
