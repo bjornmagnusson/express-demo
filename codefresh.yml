@@ -7,9 +7,9 @@ steps:
     revision: '${{CF_REVISION}}'
   helm_lint:
     title: Lint Helm Chart
-    image: docker:stable-git
+    image: quay.io/helmpack/chart-testing:v2.4.0
     commands:
-    - ./charts/test.sh  
+    - ct lint --config="charts/ct_config.yaml"
   helm_package:
     title: Building Helm Chart
     image: codefresh/cfstep-helm:latest
