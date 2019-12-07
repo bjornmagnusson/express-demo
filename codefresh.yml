@@ -1,14 +1,20 @@
 version: '1.0'
 steps:
+  main_clone:
+    title: Cloning main repository...
+    type: git-clone
+    repo: '${{CF_REPO_OWNER}}/${{CF_REPO_NAME}}'
+    revision: '${{CF_REVISION}}'
+  helm_lint:
+    title: Lint Helm Chart
+    image: quay.io/helmpack/chart-testing:v2.4.0
+    commands:
+    - ct lint --config="charts/ct_config.yaml"
   helm_package:
     title: Building Helm Chart
-    image: codefresh/cfstep-helm:2.11.0
+    image: codefresh/cfstep-helm:latest
     commands:
     - cf_export PACKAGE=$(helm package --app-version ${{CF_REVISION}} ./charts/express-demo | cut -d " " -f 8)
-    when:
-      branch:
-        only:
-          - master
   get_repo_url:
     image: codefresh/cli:latest
     commands:
@@ -18,37 +24,13 @@ steps:
         only:
           - master
   helm_push:
-    image: codefresh/cfstep-helm:2.11.0
+    image: codefresh/cfstep-helm:latest
     commands:
     - export HELM_REPO_ACCESS_TOKEN=$CF_API_KEY
     - export HELM_REPO_AUTH_HEADER=x-access-token
     - helm repo add cf-helm-default $HELM_URL
     - helm repo add remote $HELM_URL
-    #- helm dependency build ./charts/express-demo
-    #- PACKAGE="$(helm package ./charts/express-demo --destination /tmp | cut -d " " -f 8)"
     - helm push $PACKAGE remote
-    when:
-      branch:
-        only:
-          - master
-  # helm_push:
-  #   image: appropriate/curl
-  #   commands:
-  #       - curl --data-binary "@$PACKAGE" $HELM_URL/api/charts
-  DeployWithHelm:
-    title: Deploying Helm Chart
-    image: codefresh/cfstep-helm:2.11.0
-    working_directory: ./
-    environment:
-      - CHART_REF=express-demo
-      - RELEASE_NAME=express-demo
-      - KUBE_CONTEXT=mini@codefresh
-      - NAMESPACE=default
-      - custom_image_repository=bjornmagnusson/express-demo
-      - custom_image_tag=${{CF_REVISION}}
-      #- custom_service_type=LoadBalancer
-      - custom_ingress_enabled=false
-      - custom_replicaCount=3
     when:
       branch:
         only:

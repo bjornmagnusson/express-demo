@@ -1,0 +1,9 @@
+remote: origin
+target-branch: master
+validate-maintainers: false
+validate-chart-schema: true
+validate-yaml: true
+check-version-increment: true
+all: true
+chart-dirs:
+  - charts
