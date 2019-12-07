@@ -23,15 +23,11 @@ steps:
       branch:
         only:
           - master
-  helm_push:
+  push:
     image: codefresh/cfstep-helm:latest
-    commands:
-    - export HELM_REPO_ACCESS_TOKEN=$CF_API_KEY
-    - export HELM_REPO_AUTH_HEADER=x-access-token
-    - helm repo add cf-helm-default $HELM_URL
-    - helm repo add remote $HELM_URL
-    - helm repo list
-    - helm push $PACKAGE remote
+    environment:
+      - ACTION=push
+      - CHART_REF=charts/express-demo     
     when:
       branch:
         only:
