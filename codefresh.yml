@@ -8,7 +8,7 @@ steps:
   helm_lint:
     title: Lint Helm Chart
     image: docker:stable-git
-    command:
+    commands:
     - ./charts/test.sh  
   helm_package:
     title: Building Helm Chart
