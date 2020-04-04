@@ -1,5 +1,5 @@
 const os = require('os')
-var pkginfo = require('pkginfo')(module);
+//var pkginfo = require('pkginfo')(module);
 const express = require('express')
 const app = express()
 const PORT = process.env.PORT | 3000

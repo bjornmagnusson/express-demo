@@ -4,8 +4,6 @@ WORKDIR /usr/src/app
 COPY package.json .
 RUN yarn install
 COPY app.js .
-COPY test .
-RUN npm test
 
 FROM balenalib/armv7hf-alpine-node:10-3.8 as arm
 COPY --from=builder /usr/src/app/node_modules node_modules
