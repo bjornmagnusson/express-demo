@@ -7,7 +7,7 @@ steps:
     revision: '${{CF_REVISION}}'
   helm_lint:
     title: Lint Helm Chart
-    image: quay.io/helmpack/chart-testing:v2.4.0
+    image: quay.io/helmpack/chart-testing:v3.5.1
     commands:
     - ct lint --config="charts/ct_config.yaml"
   helm_package:
