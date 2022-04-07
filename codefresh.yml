@@ -12,7 +12,7 @@ steps:
     - ct lint --config="charts/ct_config.yaml"
   helm_package:
     title: Building Helm Chart
-    image: codefresh/cfstep-helm:latest
+    image: codefresh/cfstep-helm:3.6.1
     commands:
     - cf_export PACKAGE=$(helm package --app-version ${{CF_REVISION}} ./charts/express-demo | cut -d " " -f 8)
   get_repo_url:
@@ -24,7 +24,7 @@ steps:
         only:
           - master
   push:
-    image: codefresh/cfstep-helm:latest
+    image: codefresh/cfstep-helm:3.6.1
     environment:
       - ACTION=push
       - CHART_REF=charts/express-demo
