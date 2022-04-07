@@ -27,7 +27,8 @@ steps:
     image: codefresh/cfstep-helm:latest
     environment:
       - ACTION=push
-      - CHART_REF=charts/express-demo     
+      - CHART_REF=charts/express-demo
+      - CHART_REPO_URL=$HELM_URL
     when:
       branch:
         only:
