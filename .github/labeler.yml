@@ -1,8 +1,11 @@
+github-actions:
+- ".github/workflows/*"
+
 github:
-- ".github/**/*"
+- ".github/*"
 
 helm:
-- charts/**/*
+- "charts/**/*"
 
 javascript:
 - "*.js"
