@@ -23,7 +23,7 @@ describe('GET /info', function() {
     chai.request(app).get('/info')
     .end((err, res) => {
       expect(res).to.have.status(200);
-      expect(res.body).to.have.property('versions')
+      expect(res.body).to.have.property('version')
       expect(res.body).to.have.property('name')
       expect(res.body).to.have.property('hostname')
       done()

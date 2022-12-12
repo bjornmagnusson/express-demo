@@ -8,7 +8,7 @@ helm:
 - "charts/**/*"
 
 javascript:
-- "*.js"
+- "**/*.js"
 
 test:
 - test/**/*.spec.js
