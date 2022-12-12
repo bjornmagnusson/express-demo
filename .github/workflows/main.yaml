@@ -26,6 +26,8 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Collect metadata
         uses: docker/metadata-action@v4
+        with:
+          images: bjornmagnusson/express-demo
       - name: Build and push
         uses: docker/build-push-action@v3
         with:

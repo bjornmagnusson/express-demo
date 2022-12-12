@@ -1,9 +1,11 @@
+github:
+- ".github/**/*"
+
 helm:
-- helm/*
+- helm/**/*
 
 javascript:
 - "*.js"
 
-# Add 'source' label to any change to src files within the source dir EXCEPT for the docs sub-folder
 test:
-- test/*
+- test/**/*
