@@ -5,7 +5,7 @@ github:
 - ".github/*"
 
 helm:
-- "charts/**/*.yaml"
+- charts/**/*.yaml
 
 javascript:
 - "**/*.js"
