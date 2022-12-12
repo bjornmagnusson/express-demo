@@ -11,4 +11,4 @@ javascript:
 - "*.js"
 
 test:
-- test/**/*
+- test/**/*.spec.js
