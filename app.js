@@ -11,8 +11,8 @@ app.get('/', function (req, res) {
 
 app.get('/info', function (req, res) {
   res.send({
-    name:  module.exports.name || '',
-    version: module.exports.version || '',
+    name:  module.exports.name || 'N/A',
+    version: module.exports.version || 'N/A',
     hostname: hostname
   })
 })
