@@ -2,7 +2,7 @@ github:
 - ".github/**/*"
 
 helm:
-- charts/*
+- charts/**/*
 
 javascript:
 - "**/*.js"
