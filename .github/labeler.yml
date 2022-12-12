@@ -2,7 +2,7 @@ helm:
 - helm/*
 
 javascript:
-- *.js
+- "*.js"
 
 # Add 'source' label to any change to src files within the source dir EXCEPT for the docs sub-folder
 test:
