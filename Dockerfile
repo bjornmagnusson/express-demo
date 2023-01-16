@@ -1,5 +1,5 @@
 # syntax = docker/dockerfile:1.0.1
-FROM node:10 as builder
+FROM node:14 as builder
 WORKDIR /usr/src/app
 COPY package.json .
 RUN yarn install
@@ -18,7 +18,7 @@ LABEL org.opencontainers.image.revision=$REVISION
 EXPOSE 3000
 CMD [ "npm", "start" ]
 
-FROM node:10 as standard
+FROM node:14 as standard
 COPY --from=builder /usr/src/app/node_modules node_modules
 COPY --from=builder /usr/src/app/package.json .
 COPY --from=builder /usr/src/app/app.js .
