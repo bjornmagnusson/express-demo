@@ -37,7 +37,7 @@ jobs:
             type=raw,value={{sha}},event=branch
             type=semver,pattern={{version}}
       - name: Build and push
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
