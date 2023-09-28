@@ -8,7 +8,7 @@
     "pkginfo": "0.4.1"
   },
   "devDependencies": {
-    "chai": "^4.3.7",
+    "chai": "^4.3.9",
     "chai-http": "^4.4.0",
     "mocha": "10.2.0",
     "supertest": "^6.3.3"
